@@ -1,9 +1,49 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>web-app-spring-rest</groupId>
+  <groupId>com.eduardo.spring</groupId>
   <artifactId>web-app-spring-rest</artifactId>
   <version>1.0.0</version>
   <packaging>war</packaging>
+  <name>Web App Spring Rest</name>
+  
+  <properties>
+  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  	<springframework.version>4.3.10.RELEASE</springframework.version>
+  	<jackson.version>2.9.0</jackson.version>
+  </properties>
+  
+  <dependencies>
+  
+  	<!-- SPRING FRAMEWORK -->
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-webmvc</artifactId>
+  		<version>${springframework.version}</version>
+  	</dependency>
+  	
+  	<!-- JACKSON -->
+  	<dependency>
+  		<groupId>com.fasterxml.jackson.core</groupId>
+    	<artifactId>jackson-core</artifactId>
+    	<version>${jackson.version}</version>
+  	</dependency>
+  	
+  	<!-- Javax Servlet -->
+  	<dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>3.1.0</version>
+    </dependency>
+    
+    <!-- JSTL -->
+    <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>jstl</artifactId>
+        <version>1.2</version>
+    </dependency>
+  	
+  </dependencies>
+  
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
@@ -20,8 +60,11 @@
         <version>3.0.0</version>
         <configuration>
           <warSourceDirectory>WebContent</warSourceDirectory>
+          <warName>web-app-spring-rest</warName>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
         </configuration>
       </plugin>
     </plugins>
+    <finalName>web-app-spring-rest</finalName>
   </build>
 </project>
