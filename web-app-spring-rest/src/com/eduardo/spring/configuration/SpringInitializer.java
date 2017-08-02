@@ -1,5 +1,7 @@
 package com.eduardo.spring.configuration;
 
+import javax.servlet.Filter;
+
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class SpringInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -19,4 +21,9 @@ public class SpringInitializer extends AbstractAnnotationConfigDispatcherServlet
 		return new String[] {"/"};
 	}
 
+	// configure the filters
+	@Override
+	protected Filter[] getServletFilters() {
+		return new Filter[] {new CORSFilter()};
+	}
 }
