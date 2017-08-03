@@ -10,6 +10,14 @@ public class User {
 	public User() {
 		this.id = 0;
 	}
+	
+	public User(long id, String username, String address, String email) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.address = address;
+		this.email = email;
+	}
 
 	public long getId() {
 		return id;

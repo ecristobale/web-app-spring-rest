@@ -21,10 +21,10 @@
   		<version>${springframework.version}</version>
   	</dependency>
   	
-  	<!-- JACKSON -->
+  	<!-- JACKSON databind to avoid: java.lang.IllegalArgumentException: No converter found for return value of type with HTTP 500 -->
   	<dependency>
   		<groupId>com.fasterxml.jackson.core</groupId>
-    	<artifactId>jackson-core</artifactId>
+    	<artifactId>jackson-databind</artifactId>
     	<version>${jackson.version}</version>
   	</dependency>
   	
