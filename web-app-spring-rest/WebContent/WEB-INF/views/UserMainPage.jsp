@@ -3,6 +3,8 @@
 <html>
 <head>
 	<title>User Main Page</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link href="<c:url value='/static/css/style.css' />" rel="stylesheet"></link>
 </head>
 <body ng-app="myAngularApp" class="ng-cloak">
 	<div class="generic-container" ng-controller="UserController as ctrl">
@@ -22,7 +24,7 @@
 					<tbody>
 						<tr ng-repeat="user in ctrl.users">
 							<td><span ng-bind="user.id"></span></td>
-							<td><span ng-bind="user.name"></span></td>
+							<td><span ng-bind="user.username"></span></td>
 							<td><span ng-bind="user.address"></span></td>
 							<td><span ng-bind="user.email"></span></td>
 						</tr>
@@ -32,7 +34,7 @@
 		</div>
 	</div>
 	
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
     <script src="<c:url value='/static/js/app.js' />"></script> 
     <script src="<c:url value='/static/js/controller/user_controller.js' />"></script>
     <script src="<c:url value='/static/js/factory/user_factory.js' />"></script>
