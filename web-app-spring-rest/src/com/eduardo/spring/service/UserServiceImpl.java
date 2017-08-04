@@ -34,4 +34,20 @@ public class UserServiceImpl implements UserService {
 		}};
 	}
 
+	@Override
+	public boolean userExists(User user) {
+		for(int i=0; i<users.size(); i++) {
+			if(users.get(i).getUsername().equalsIgnoreCase(user.getUsername())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public void saveUser(User user) {
+		user.setId(counterId.incrementAndGet());
+		users.add(user);
+	}
+
 }
