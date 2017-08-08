@@ -7,4 +7,10 @@ import com.eduardo.spring.model.User;
 public interface UserService {
 
 	List<User> getAllUsers();
+
+	boolean userExists(User user);
+
+	void saveUser(User user);
+
+	
 }
