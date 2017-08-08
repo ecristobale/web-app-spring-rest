@@ -74,7 +74,7 @@
  
                       <div class="row">
                           <div class="form-actions floatRight">
-                              <input type="submit"  value="Add" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
+                              <input type="submit"  value="{{!userCtrl.user.id ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
                               <button type="button" ng-click="userCtrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Reset Form</button>
                           </div>
                       </div>
@@ -92,6 +92,7 @@
                               <th>Name</th>
                               <th>Address</th>
                               <th>Email</th>
+                              <th width="20%"></th>
                           </tr>
                       </thead>
                       <tbody>
@@ -100,6 +101,9 @@
                               <td><span ng-bind="usr.username"></span></td>
                               <td><span ng-bind="usr.address"></span></td>
                               <td><span ng-bind="usr.email"></span></td>
+                              <td>
+                              	<button type="button" ng-click="userCtrl.edit(usr.id)" class="btn btn-success custom-width">Edit</button>
+                              </td>
                           </tr>
                       </tbody>
                   </table>

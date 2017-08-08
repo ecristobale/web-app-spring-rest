@@ -15,6 +15,7 @@
 		
 		vm.submit = submit;
 		vm.reset = reset;
+		vm.edit = edit;
 		
 		activate();
 		
@@ -37,12 +38,19 @@
 				.then(fetchAllUsers);
 		}
 		
+		function updateUser(user, id){
+			UserService.updateUser(user, id)
+				.then(fetchAllUsers);
+		}
+		
 		function submit() {
 			if(vm.user.id === null){
 				createUser(vm.user);
+			} else{
+				updateUser(vm.user, vm.user.id);
+				console.log('User updated with id: ' + vm.user.id);
 			}
-			
-			
+						
 			reset();
 		}
 
@@ -50,6 +58,17 @@
 			vm.user = {id:null, username:'', address:'', email:''};
 			$scope.myForm.$setPristine();
 		}
+
+		function edit(id) {
+			console.log('Id to be edited: ', id);
+			for(var i=0; i<vm.users.length; i++){
+				if(id===vm.users[i].id){
+					vm.user = angular.copy(vm.users[i]);
+					break;
+				}
+			}
+		}
+		
 	}
 	
 })();

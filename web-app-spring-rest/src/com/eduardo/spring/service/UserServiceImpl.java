@@ -50,4 +50,20 @@ public class UserServiceImpl implements UserService {
 		users.add(user);
 	}
 
+	@Override
+	public User findUserbyId(long id) {
+		for(User user : users) {
+			if(user.getId() == id) {
+				return user;
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public void updateUser(User user) {
+		int index = users.indexOf(user);
+		users.set(index, user);
+	}
+
 }

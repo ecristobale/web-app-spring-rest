@@ -13,7 +13,8 @@
 		
 		var service = {
 			fetchAllUsers : fetchAllUsers,
-			createUser: createUser
+			createUser: createUser,
+			updateUser: updateUser
 		};
 		
 		return service;
@@ -51,6 +52,25 @@
 
 			function createUserFailed(errorResponse){
 				console.error('Error while creating user: { id: ' + user.id + ', username: ' + user.username + ', address: ' + user.address + ', email: ' + user.email + ' }');
+				deferred.reject(errorResponse);
+			}
+		}
+
+		function updateUser(user, id) {
+			console.log('Factory --> updateUser --> id: ' + user.id + ', username: ' + user.username + ', email: ' + user.email);
+			var deferred = $q.defer();
+			$http.put(REST_SERVICE_URI + '/' + id, user)
+				.then(updateUserComplete)
+				.catch(updateUserFailed);
+
+			return deferred.promise;
+
+			function updateUserComplete(response){
+				deferred.resolve(response.data);
+			}
+
+			function updateUserFailed(errorResponse){
+				console.error('Error while updating user: { id: ' + user.id + ', username: ' + user.username + ', address: ' + user.address + ', email: ' + user.email + ' }');
 				deferred.reject(errorResponse);
 			}
 		}
