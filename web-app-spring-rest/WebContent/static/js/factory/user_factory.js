@@ -12,7 +12,8 @@
 		var REST_SERVICE_URI = 'http://localhost:8080/web-app-spring-rest/user';
 		
 		var service = {
-			fetchAllUsers : fetchAllUsers 	
+			fetchAllUsers : fetchAllUsers,
+			createUser: createUser
 		};
 		
 		return service;
@@ -30,7 +31,26 @@
 			}
 			
 			function fetchAllUsersFailed(errorResponse){
-				console.log('Error while fetching users');
+				console.error('Error while fetching users');
+				deferred.reject(errorResponse);
+			}
+		}
+
+		function createUser(user) {
+			console.log('Factory --> createUser --> id: ' + user.id + ', username: ' + user.username + ', email: ' + user.email);
+			var deferred = $q.defer();
+			$http.post(REST_SERVICE_URI, user)
+				.then(createUserComplete)
+				.catch(createUserFailed);
+
+			return deferred.promise;
+
+			function createUserComplete(response){
+				deferred.resolve(response.data);
+			}
+
+			function createUserFailed(errorResponse){
+				console.error('Error while creating user: { id: ' + user.id + ', username: ' + user.username + ', address: ' + user.address + ', email: ' + user.email + ' }');
 				deferred.reject(errorResponse);
 			}
 		}

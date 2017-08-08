@@ -5,12 +5,16 @@
 		.module('myAngularApp')
 		.controller('UserController', UserController);
 	
-	UserController.$inject = ['UserService'];
+	UserController.$inject = ['$scope', 'UserService'];
 	
-	function UserController(UserService){
+	function UserController($scope, UserService){
 		
 		var vm = this; // vm ==> View Model
+		vm.user = {id:null, username:'', address:'', email:''};
 		vm.users = [];
+		
+		vm.submit = submit;
+		vm.reset = reset;
 		
 		activate();
 		
@@ -26,6 +30,25 @@
 					vm.users = data;
 					return vm.users;
 				});
+		}
+
+		function createUser(user) {
+			UserService.createUser(user)
+				.then(fetchAllUsers);
+		}
+		
+		function submit() {
+			if(vm.user.id === null){
+				createUser(vm.user);
+			}
+			
+			
+			reset();
+		}
+
+		function reset() {
+			vm.user = {id:null, username:'', address:'', email:''};
+			$scope.myForm.$setPristine();
 		}
 	}
 	
