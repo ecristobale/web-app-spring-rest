@@ -12,5 +12,9 @@ public interface UserService {
 
 	void saveUser(User user);
 
+	User findUserbyId(long id);
+
+	void updateUser(User user);
+
 	
 }
