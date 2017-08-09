@@ -1,6 +1,7 @@
 package com.eduardo.spring.service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -51,7 +52,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User findUserbyId(long id) {
+	public User findUserById(long id) {
 		for(User user : users) {
 			if(user.getId() == id) {
 				return user;
@@ -64,6 +65,16 @@ public class UserServiceImpl implements UserService {
 	public void updateUser(User user) {
 		int index = users.indexOf(user);
 		users.set(index, user);
+	}
+
+	@Override
+	public void deleteUserById(long id) {
+		for(Iterator<User> iterator = users.iterator(); iterator.hasNext();) {
+			User user = iterator.next();
+			if(user.getId()==id) {
+				iterator.remove();
+			}
+		}
 	}
 
 }

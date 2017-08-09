@@ -16,6 +16,7 @@
 		vm.submit = submit;
 		vm.reset = reset;
 		vm.edit = edit;
+		vm.remove = remove;
 		
 		activate();
 		
@@ -43,6 +44,11 @@
 				.then(fetchAllUsers);
 		}
 		
+		function deleteUser(id){
+			UserService.deleteUser(id)
+				.then(fetchAllUsers);
+		}
+		
 		function submit() {
 			if(vm.user.id === null){
 				createUser(vm.user);
@@ -67,6 +73,14 @@
 					break;
 				}
 			}
+		}
+		
+		function remove(id){
+			console.log('Id to be deleted: ', id);
+			if(vm.user.id === id){
+				reset();
+			}
+			deleteUser(id);
 		}
 		
 	}
