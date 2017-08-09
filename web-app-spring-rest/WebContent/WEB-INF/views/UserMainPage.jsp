@@ -103,6 +103,7 @@
                               <td><span ng-bind="usr.email"></span></td>
                               <td>
                               	<button type="button" ng-click="userCtrl.edit(usr.id)" class="btn btn-success custom-width">Edit</button>
+                              	<button type="button" ng-click="userCtrl.remove(usr.id)" class="btn btn-danger custom-width">Delete</button>
                               </td>
                           </tr>
                       </tbody>
