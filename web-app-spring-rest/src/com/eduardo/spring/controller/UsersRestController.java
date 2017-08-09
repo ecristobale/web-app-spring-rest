@@ -46,7 +46,7 @@ public class UsersRestController {
 	public ResponseEntity<User> updateUser(@PathVariable("id") long id, @RequestBody User user){
 		
 		// retrieve user with the id received in the path
-		User currentUser = userService.findUserbyId(id);
+		User currentUser = userService.findUserById(id);
 		
 		if(currentUser == null) {
 			return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
@@ -61,4 +61,21 @@ public class UsersRestController {
 		
 		return new ResponseEntity<User>(currentUser, HttpStatus.OK);
 	}
+	
+	// Delete user
+	@RequestMapping(value="/user/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<User> deleteUser(@PathVariable("id") long id){
+		
+		// Retrieve user based on its id
+		User userToDelete = userService.findUserById(id);
+		
+		// User null -> user not found
+		if(userToDelete==null) {
+			return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+		}
+		
+		userService.deleteUserById(id);
+		return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
+	}
+	
 }
